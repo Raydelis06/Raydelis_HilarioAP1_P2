@@ -13,6 +13,9 @@ var ConStr = builder.Configuration.GetConnectionString("SqlConStr");
 builder.Services.AddDbContextFactory<Contexto>(options =>
     options.UseSqlServer(ConStr));
 
+//Inyecta bootstrap
+builder.Services.AddBlazorBootstrap();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
