@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Extensors\" />
     <Folder Include="Services\" />
   </ItemGroup>
 
