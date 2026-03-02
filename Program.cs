@@ -1,10 +1,17 @@
+using Microsoft.EntityFrameworkCore;
 using Raydelis_HilarioAP1_P2.Components;
+using Raydelis_HilarioAP1_P2.DAL;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+//Agrega cadena de conexion
+var ConStr = builder.Configuration.GetConnectionString("SqlConStr");
+//Inyecta el contexto
+builder.Services.AddDbContextFactory<Contexto>(options =>
+    options.UseSqlServer(ConStr));
 
 var app = builder.Build();
 
