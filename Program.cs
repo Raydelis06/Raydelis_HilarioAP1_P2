@@ -17,6 +17,8 @@ builder.Services.AddDbContextFactory<Contexto>(options =>
 //Inyecta el servicio
 builder.Services.AddScoped<AsignacionService>();
 builder.Services.AddScoped<EstudiantesService>();
+builder.Services.AddScoped<PuntosService>();
+
 
 
 //Inyecta bootstrap
