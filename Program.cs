@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Raydelis_HilarioAP1_P2.Components;
 using Raydelis_HilarioAP1_P2.DAL;
+using Raydelis_HilarioAP1_P2.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,9 @@ var ConStr = builder.Configuration.GetConnectionString("SqlConStr");
 //Inyecta el contexto
 builder.Services.AddDbContextFactory<Contexto>(options =>
     options.UseSqlServer(ConStr));
+
+//Inyecta el servicio
+builder.Services.AddScoped<AsignacionService>();
 
 //Inyecta bootstrap
 builder.Services.AddBlazorBootstrap();
