@@ -19,5 +19,12 @@ namespace Raydelis_HilarioAP1_P2.Services
             await using var contexto = await DbFactory.CreateDbContextAsync();
             return await contexto.Estudiantes.FirstOrDefaultAsync(p => p.EstudianteId == estudianteId);
         }
+        //metodo modificar
+        public async Task<bool> Modificar(Estudiantes estudiante)
+        {
+            await using var contexto = await DbFactory.CreateDbContextAsync();
+            contexto.Estudiantes.Update(estudiante);
+            return await contexto.SaveChangesAsync() > 0;
+        }
     }
 }

@@ -110,6 +110,12 @@
     {
         try
         {
+            var estudiante = ListaEstudiantes.FirstOrDefault(e => e.EstudianteId == asignacion.EstudianteId);
+            if(estudiante != null)
+            {
+                estudiante.BalancePuntos += asignacion.TotalPuntos;
+                await estudiantesService.Modificar(estudiante);
+            }
             var guardado = await asignacionService.Guardar(asignacion);
             if (guardado)
             {
@@ -147,6 +153,7 @@
             };
             asignacion.DetallesAsignacion.Add(nuevoDetalle);
             asignacion.TotalPuntos = asignacion.DetallesAsignacion.Sum(e => e.CantidadPuntos);
+            
             detalleAsignacion = new DetalleAsignacionPuntos();
 
             toastService.ShowSuccess("Detalle agregado correctamente");

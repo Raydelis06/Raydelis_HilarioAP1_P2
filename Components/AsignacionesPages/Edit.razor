@@ -87,7 +87,8 @@
                 <a href="/Index" class="btn btn-secondary ">
                     <span class="bi bi-arrow-left"> Volver</span>
                 </a>
-                <button type="submit" class="btn btn-primary bi bi-save"> Crear</button>
+                <button type="submit" class="btn btn-primary bi bi-save"> Guardar</button>
+                <button class="btn btn-danger bi bi-trash" @onclick="Eliminar">Eliminar</button>
             </div>
         </div>
     </div>
@@ -116,6 +117,12 @@
     {
         try
         {
+            var estudiante = ListaEstudiantes.FirstOrDefault(e => e.EstudianteId == asignacion.EstudianteId);
+            if (estudiante != null)
+            {
+                estudiante.BalancePuntos += asignacion.TotalPuntos;
+                await estudiantesService.Modificar(estudiante);
+            }
             var guardado = await asignacionService.Guardar(asignacion);
             if (guardado)
             {
@@ -137,6 +144,12 @@
     {
         try
         {
+            var estudiante = ListaEstudiantes.FirstOrDefault(e => e.EstudianteId == asignacion.EstudianteId);
+            if (estudiante != null)
+            {
+                estudiante.BalancePuntos -= asignacion.TotalPuntos;
+                await estudiantesService.Modificar(estudiante);
+            }
             var eliminada = await asignacionService.Eliminar(asignacion.IdAsignacion);
             if (eliminada)
             {
